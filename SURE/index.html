@@ -1,0 +1,214 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>SURE</title>
+  <meta name="description" content="SURE: SUrvey REcipes for building reliable and robust deep networks">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+  <meta charset="utf-8">
+
+  <!--Facebook preview-->
+  <meta property="og:image" content="https://imagine.enpc.fr/~monniert/DTIClustering/thumbnail.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="600">
+  <meta property="og:image:height" content="400">
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://imagine.enpc.fr/~monniert/DTIClustering/"/>
+  <meta property="og:title" content="DTI Clustering"/>
+  <meta property="og:description" content="Project page for Deep Transformation-Invariant Clustering."/>
+
+  <!--Twitter preview-->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="DTI Clustering" />
+  <meta name="twitter:description" content="Project page for Deep Transformation-Invariant Clustering."/>
+  <meta name="twitter:image" content="https://imagine.enpc.fr/~monniert/DTIClustering/thumbnail_twitter.png">
+
+  <!--Style-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="style.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+
+<div class="container" style="text-align:center; padding:2rem 15px">
+  <div class="row" style="text-align:center">
+    <h1>SURE: SUrvey REcipes for building reliable and robust deep networks</h1>
+    <h4>The IEEE/CVF Conference on Computer Vision and Pattern Recognition(CVPR) 2024</h4>
+  </div>
+  <div class="row" style="text-align:center">
+    <div class="col-xs-0 col-md-2"></div>
+    <div class="col-xs-12 col-md-8">
+      <h4>
+        <a href=""><nobr>Yuting Li</nobr></a><sup>1, 2</sup> &emsp;
+        <a href="https://yingyichen-cyy.github.io/"><nobr>Yingyi Chen</nobr></a><sup>3</sup> &emsp; &emsp;
+        <a href="https://xuanlong-yu.github.io//"><nobr>Xuanlong Yu</nobr></a><sup>4, 5</sup> &emsp;
+        <a href="https://dexiong.me/"><nobr>Dexiong Chen<sup>&dagger;</sup></nobr></a><sup>6</sup> &emsp;
+          <a href="https://xishen0220.github.io/"><nobr>Xi Shen<sup>&dagger;</sup></nobr></a><sup>1</sup> &emsp;
+        
+      </h4>
+      <sup>1</sup> Intellindust, China &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+      <sup>2</sup> China Three Gorges University, China &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+      <sup>3</sup> ESAT-STADIUS, KU Leuven, Belgium  <br />
+      <sup>4</sup> SATIE, Paris-Saclay University, France &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+      <sup>5</sup> U2IS, ENSTA Paris, Institut Polytechnique de Paris, France <br>
+      <sup>6</sup> Max Planck Institute of Biochemistry, Germany
+    </div>
+  </div>
+</div>
+
+<div style="display: flex; justify-content: center; align-items: center;">
+    <img src="resrc/teaser.png" alt="Teaser" style="width:50% ; margin-right: 10px;">
+</div>
+
+<div style="display: flex; justify-content: center; align-items: center;">
+  <h3 style="text-align:center; padding-top:1rem">
+    <!-- <a class="label label-info" href="">arXiv</a> -->
+    <a class="label label-info" href="https://arxiv.org/abs/2206.13140">Paper</a>
+    <a class="label label-info" href="https://github.com/yingyichen-cyy/Nested-Co-teaching">Code</a>
+  </h3>
+</div>
+
+<div class="container">
+  <h3>Abstract</h3>
+  <hr/>
+  <p>
+    In this paper, we revisit techniques for uncertainty estimation within deep neural networks and consolidate a suite of techniques to enhance their reliability. Our investigation reveals that an integrated application of diverse techniques--spanning model regularization, classifier and optimization--substantially improves the accuracy of uncertainty predictions in image classification tasks.
+The synergistic effect of these techniques culminates in our novel SURE approach. We rigorously evaluate SURE against the benchmark of failure prediction, a critical testbed for uncertainty estimation efficacy. Our results showcase a consistently better performance than models that individually deploy each technique, across various datasets and model architectures. When applied to real-world challenges, such as data corruption, label noise, and long-tailed class distribution, SURE exhibits remarkable robustness, delivering results that are superior or on par with current state-of-the-art specialized methods.
+Particularly on Animal-10N and Food-101N for learning with noisy labels, SURE achieves accuracies of 89.0% and 88.0% respectively, surpassing the best existing methods by 0.5% and 2.1%.
+This work not only sets a new benchmark for robust uncertainty estimation but also paves the way for its application in diverse, real-world scenarios where reliability is paramount. Our code will be released upon publication.
+  </p>
+
+  <h3>Method</h3>
+  <hr/>
+  <div class="row" style="text-align: center; padding-left:1rem; padding-right:1rem; padding-bottom:1rem;">
+    <img src="resrc/recipes.png" alt="workflow.jpg" class="text-center" style="width: 100%; max-width: 1000px;">
+    <p></br>
+      Our proposed approach SURE contains two aspects: increasing entropy for hard samples and enforcing flat minima during optimization. We incorporate RegMixup loss and correctness ranking loss (CRL) as our loss function and employ cosine similarity classifier (CSC) as our classifier to increase entropy for hard samples. As in optimization, we leverage Sharpness-Aware Minimization (SAM) and Stochastic Weight Averaging (SWA) to find flat minima.
+    </p>
+  </div>
+
+  <h3>Results</h3>
+  <hr/>
+  <p><font color=#00BBFF>Please refer to our paper for more experiments.</font></p>
+  <div class="row" style="text-align: center">
+    <div class="col-xs-6">
+      <h4 style="margin-left: 50%"><u></u></h4>
+    </div>
+    <div class="col-xs-6">
+      <h4><u></u></h4>
+    </div>
+  </div>
+  <div class="row" style="text-align: center; padding-left:1rem; padding-right:1rem; padding-bottom:1rem;">
+    <h4><u>Failure prediction</u></h4>
+    <img src="resrc/main_results.jpeg" alt="workflow.jpg" class="text-center" style="width: 100%; max-width: 1000px;">
+
+  </div>
+
+  <div class="row" style="text-align: center">
+    <div class="col-xs-6">
+      <h4><u>Long-tailed classification</u></h4>
+    </div>
+    <div class="col-xs-6">
+      <h4><u>Learning with noisy labels</u></h4>
+    </div>
+  </div>
+  <div class="row" style="text-align: center">
+    <div class="col-xs-6">
+      <img src="resrc/long-tail.jpeg" alt="clothing1m.jpg" class="text-center" style="width: 100%; max-width: 900px">
+    </div>
+    <div class="col-xs-6">
+      <img src="resrc/label-noise.jpeg" alt="animal.jpg" class="text-center" style="width: 100%; max-width: 900px; margin-top:
+      10px">
+    </div>
+  </div>
+
+<!--  <div class="row" style="text-align: center">-->
+<!--    <div class="col-xs-6">-->
+<!--      <h4><u>Robustness under data corruptions</u></h4>-->
+<!--    </div>-->
+
+<!--  </div>-->
+
+  <div class="row" style="text-align: center; padding-left:1rem; padding-right:1rem; padding-bottom:1rem;">
+    <h4><u>Robustness under data corruptions</u></h4>
+    <img src="resrc/DATA1.jpeg" alt="workflow.jpg" class="text-center" style="width: 100%; max-width: 1000px;">
+
+  </div>
+<!--  <div class="row" style="text-align: center; padding-left:1rem; padding-right:1rem; padding-bottom:1rem;">-->
+<!--    <h4><u>Failure prediction</u></h4>-->
+<!--    <img src="resrc/DATA.jpeg" alt="workflow.jpg" class="text-center" style="width: 100%; max-width: 1000px;">-->
+
+<!--  </div>-->
+<!--  <div class="row" style="text-align: center">-->
+<!--    <div class="col-xs-6">-->
+<!--      <div style="width: 90%; max-width: 900px; padding-top:10px">-->
+<!--      <p>Test accuracy (%) of state-of-the-art methods on Clothing1M (noise ratio ∼38%). -->
+<!--      All approaches are implemented with ResNet-50 architecture.-->
+<!--      Results with ``*" use a balanced subset or a balanced loss.</p>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="col-xs-6">-->
+<!--      <div style="width: 100%; max-width: 900px; padding-top:10px">-->
+<!--        <p>Average test accuracy (%) with standard deviation (3 runs) of state-of-the-art methods on ANIMAL-10N (noise ratio ~8%). -->
+<!--            All approaches are implemented with VGG-19 architecture.-->
+<!--            Results with ``*" use two networks for training.</p>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+
+  <h3>Resources</h3>
+  <hr/>
+  <div class="row" style="text-align: center">
+    <div class="col-xs-0 col-lg-0"></div>
+    <div class="col-xs-4 col-lg-4">
+      <h4>Paper</h4>
+<!--      <a href="https://arxiv.org/abs/2206.13140" style="color:inherit"> -->
+        <img src="resrc/paper.jpeg" alt="paper.jpg" class="text-center" style="max-width:70%; border:0.15em solid;
+        border-radius:0.5em;"></a>
+    </div>
+    <div class="col-xs-4 col-lg-4">
+      <h4>Code</h4>
+      <a href="https://github.com/Lyttonkeepfoing/SURE" style="color:inherit;">
+        <img src="resrc/github.jpeg" alt="github_repo.jpg" class="text-center"
+             style="max-width:69%; border:0.15em solid;border-radius:0.5em;"></a>
+    </div>
+<!--    <div class="col-xs-4 col-lg-4">-->
+<!--      <h4>Poster</h4>-->
+<!--      <a href="web" style="color:inherit">-->
+<!--        <img src="resrc/workshop.jpg" alt="workshop.jpg" class="text-center" style="max-width:70%; border:0.15em solid;-->
+<!--        border-radius:0.5em;"></a>-->
+<!--    </div>-->
+    <div class="col-xs-0 col-lg-0"></div>
+  </div>
+    <h4 style="padding-top:0.5em">BibTeX</h4>
+    If you find this work useful for your research, please cite:
+    <div class="card">
+      <div class="card-block">
+        <pre class="card-text clickselect">
+          @inproceedings{li2024sure,
+          title={SURE: SUrvey REcipes for building reliable and robust deep networks},
+          author={Li, Yuting and Chen, Yingyi and Yu, Xuanlong and Chen, Dexiong and Shen, Xi},
+          booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+          year={2024}
+          }</pre>
+      </div>
+    </div>
+  <h3>Acknowledgements</h3>
+  <hr/>
+  <p>
+    <font color=#00BBFF>We thank Caizhi Zhu, Yuming Du and Yinqiang Zheng for inspiring discussions and valuable feedback.</font>.
+    <br />
+  </p>
+</div>
+
+<div class="container" style="padding-top:3rem; padding-bottom:3rem">
+  <p style="text-align:center">
+  &#169; This webpage was in part inspired from this
+  <a href="https://github.com/monniert/project-webpage">template</a>.
+  </p>
+</div>
+
+</body>
+</html> 
