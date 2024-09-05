@@ -1,0 +1,194 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>SURE</title>
+  <meta name="description" content="HTR-VT: Handwritten Text Recognition with Vision Transformer">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+  <meta charset="utf-8">
+
+  <!--Facebook preview-->
+  <meta property="og:image" content="https://imagine.enpc.fr/~monniert/DTIClustering/thumbnail.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="600">
+  <meta property="og:image:height" content="400">
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://yutingli0606.github.io/HTR-VT/"/>
+  <meta property="og:title" content="HTR-VT(Pattern Recognition)"/>
+  <meta property="og:description" content="Project page for HTR-VT: Handwritten Text Recognition with Vision Transformer."/>
+
+  <!--Twitter preview-->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="HTR-VT(Pattern Recognition)" />
+  <meta name="twitter:description" content="Project page for HTR-VT: Handwritten Text Recognition with Vision Transformer."/>
+  <meta name="twitter:image" content="https://imagine.enpc.fr/~monniert/DTIClustering/thumbnail_twitter.png">
+
+  <!--Style-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="style.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+
+<div class="container" style="text-align:center; padding:2rem 15px">
+  <div class="row" style="text-align:center">
+    <h1>HTR-VT: Handwritten Text Recognition with Vision Transformer</h1>
+    <h4>Pattern Recognition</h4>
+  </div>
+  <div class="row" style="text-align:center">
+    <div class="col-xs-0 col-md-2"></div>
+    <div class="col-xs-12 col-md-8">
+      <h4>
+        <a href="https://yutingli0606.github.io"><nobr>Yuting Li</nobr></a><sup>1, 3</sup> &emsp;
+        <a href="https://dexiong.me/"><nobr>Dexiong Chen<sup>&dagger;</sup></nobr></a><sup>2</sup> &emsp;
+        <a href=""><nobr>Tinglong Tang</nobr></a><sup>1</sup> &emsp;
+        <a href="https://xishen0220.github.io/"><nobr>Xi Shen<sup>&dagger;</sup></nobr></a><sup>3</sup> &emsp;
+
+      </h4>
+      <sup>1</sup> China Three Gorges University, China <br>
+      <sup>2</sup> Max Planck Institute of Biochemistry, Germany <br>
+      <sup>3</sup> Intellindust, China
+    </div>
+  </div>
+</div>
+
+
+<div style="display: flex; justify-content: center; align-items: center;">
+  <h3 style="text-align:center; padding-top:1rem">
+    <a class="label label-info" href="https://www.sciencedirect.com/science/article/abs/pii/S0031320324007180">Paper</a>
+    <a class="label label-info" href="">arXiv</a>
+    <a class="label label-info" href="https://github.com/YutingLi0606/HTR-VT">Code</a>
+  </h3>
+</div>
+
+<div class="container">
+  <h3>Abstract</h3>
+  <hr/>
+  <p>
+    We explore the application of Vision Transformer (ViT) for handwritten text recognition. The limited availability of labeled data in this domain poses challenges for achieving high performance solely relying on ViT. Previous transformer-based models required external data or extensive pre-training on large datasets to excel.
+To address this limitation, we introduce a data-efficient ViT method that uses only the encoder of the standard transformer. We find that incorporating a Convolutional Neural Network (CNN) for feature extraction instead of the original patch embedding and employ Sharpness-Aware Minimization (SAM) optimizer to ensure that the model can converge towards flatter minima and yield notable enhancements. Furthermore, our introduction of the span mask technique, which masks interconnected features in the feature map, acts as an effective regularizer.
+Empirically, our approach competes favorably with traditional CNN-based models on small datasets like IAM and READ2016. Additionally, it establishes a new benchmark on the LAM dataset, currently the largest dataset with 19,830 training text lines. %We further show that our method outstrips ViT and traditional CNN-based models in terms of data efficiency, and as the data volume increases, our method's performance surges at a pace swifter than ViT and traditional CNN-based models.
+  </p>
+
+  <h3>Method</h3>
+  <hr/>
+  <div class="row" style="text-align: center; padding-left:1rem; padding-right:1rem; padding-bottom:1rem;">
+    <img src="resrc/HTR-VT.png" alt="workflow.jpg" class="text-center" style="width: 40%; max-width: 900px;">
+    <p></br>
+      Our approach encodes a text-line image into features using a CNN feature extractor. The transformer encoder takes these
+features as input tokens output character predictions. During the training, the span input tokens are replaced by learnable mask tokens. The entire model is optimized using CTC loss.
+    </p>
+  </div>
+
+  <h3>Results</h3>
+  <hr/>
+  <p><font color=#00BBFF>Please refer to our paper for more experiments.</font></p>
+
+  <div class="container">
+    <div class="row text-center">
+      <div class="col-xs-4">
+        <h4><u>LAM</u></h4>
+      </div>
+      <div class="col-xs-4">
+        <h4><u>IAM</u></h4>
+      </div>
+      <div class="col-xs-4">
+        <h4><u>READ2016</u></h4>
+      </div>
+    </div>
+    <div class="row text-center">
+      <div class="col-xs-4">
+        <img src="resrc/res1.png" alt="clothing1m.jpg" class="img-responsive" style="width: 100%; max-width: 900px">
+      </div>
+      <div class="col-xs-4">
+        <img src="resrc/res3.png" alt="clothing1m.jpg" class="img-responsive" style="width: 100%; max-width: 900px">
+      </div>
+      <div class="col-xs-4">
+        <img src="resrc/res2.png" alt="animal.jpg" class="img-responsive" style="width: 100%; max-width: 900px; margin-top: 10px">
+      </div>
+    </div>
+  </div>
+
+  <h3>Visual Results</h3>
+  <hr/>
+
+<div class="container">
+  <div class="row text-center">
+    <div class="col-xs-6">
+      <h4><u>LAM</u></h4>
+      <img src="resrc/LAM.jpg" alt="LAM" class="img-responsive" style="width: 100%; max-width: 900px; margin: 0 auto;">
+    </div>
+    <div class="col-xs-6">
+      <h4><u>IAM</u></h4>
+      <img src="resrc/iam.jpg" alt="IAM" class="img-responsive" style="width: 100%; max-width: 900px; margin: 0 auto;">
+    </div>
+  </div>
+  <div class="row text-center" style="margin-top: 10px;">
+    <div class="col-xs-6">
+      <h4><u>READ2016</u></h4>
+      <img src="resrc/read.png" alt="READ2016" class="img-responsive" style="width: 100%; max-width: 900px; margin: 0 auto;">
+    </div>
+    <div class="col-xs-6">
+      <h4><u>Attention Map</u></h4>
+      <img src="resrc/atten.png" alt="Attention Map" class="img-responsive" style="width: 100%; max-width: 900px; margin: 0 auto;">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  <h3>Resources</h3>
+  <hr/>
+  <div class="row" style="text-align: center">
+    <div class="col-xs-0 col-lg-0"></div>
+    <div class="col-xs-4 col-lg-4">
+      <h4>Paper</h4>
+      <a href="https://www.sciencedirect.com/science/article/abs/pii/S0031320324007180" style="color:inherit">
+        <img src="resrc/paper.png" alt="paper.jpg" class="text-center" style="max-width:75%; border:0.15em solid;
+        border-radius:0.5em;"></a>
+    </div>
+    <div class="col-xs-4 col-lg-4">
+      <h4>arXiv</h4>
+      <a href="https://github.com/YutingLi0606/SURE" style="color:inherit;">
+        <img src="resrc/arxiv.png" alt="github_repo.jpg" class="text-center"
+             style="max-width:75%; border:0.15em solid;border-radius:0.5em;"></a>
+    </div>
+    <div class="col-xs-4 col-lg-4">
+      <h4>Code</h4>
+      <a href="https://github.com/YutingLi0606/SURE" style="color:inherit;">
+        <img src="resrc/github.png" alt="github_repo.jpg" class="text-center"
+             style="max-width:75%; border:0.15em solid;border-radius:0.5em;"></a>
+    </div>
+    <div class="col-xs-0 col-lg-0"></div>
+  </div>
+    <h4 style="padding-top:0.5em">BibTeX</h4>
+    If you find this work useful for your research, please cite:
+    <div class="card">
+      <div class="card-block">
+        <pre class="card-text clickselect">
+          @article{li2024htr,
+          title={HTR-VT: Handwritten text recognition with vision transformer},
+          author={Li, Yuting and Chen, Dexiong and Tang, Tinglong and Shen, Xi},
+          journal={Pattern Recognition},
+          pages={110967},
+          year={2024},
+          publisher={Elsevier}
+          }</pre>
+      </div>
+    </div>
+
+</div>
+
+<div class="container" style="padding-top:3rem; padding-bottom:3rem">
+  <p style="text-align:center">
+  &#169; This webpage was in part inspired from this
+  <a href="https://github.com/monniert/project-webpage">template</a>.
+  </p>
+</div>
+
+</body>
+</html>
